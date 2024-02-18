@@ -1,0 +1,24 @@
+// No For Loop Solution
+
+// Without using for loops, we can utilize C++'s Standard Template Library (STL) algorithms along with sets. The std::copy algorithm can be used with an std::inserter to achieve this, but this essentially hides the loop within the STL's algorithms rather than removing the concept of iteration altogether.
+
+#include <iostream>
+#include <vector>
+#include <set>
+#include <unordered_set>
+#include <string>
+#include <algorithm>
+
+template <typename T>
+std::vector<T> uniqueValuesNoLoops(const std::vector<T>& input) {
+    std::unordered_set<T> uniqueElements;
+    std::copy(input.begin(), input.end(), std::inserter(uniqueElements, uniqueElements.end()));
+
+    std::vector<T> result(uniqueElements.begin(), uniqueElements.end());
+    return result;
+}
+
+int main() {
+    // Use the same main function as above
+}
+

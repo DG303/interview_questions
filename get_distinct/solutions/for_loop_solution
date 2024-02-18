@@ -1,0 +1,37 @@
+// For Loop Solution
+ 
+// To solve this using for loops, we can iterate over each array and insert the elements into a std::set or std::unordered_set because these data structures automatically ensure that all elements are unique. After inserting all elements, we can convert the set back to an array (or vector, in C++ terms) to return the result. This method works for both numbers and strings, as both types can be stored in a set.
+
+
+#include <iostream>
+#include <vector>
+#include <set>
+#include <unordered_set>
+#include <string>
+
+template <typename T>
+std::vector<T> uniqueValues(const std::vector<T>& input) {
+    std::unordered_set<T> uniqueElements;
+    for (size_t i = 0; i < input.size(); ++i) {
+        uniqueElements.insert(input[i]);
+    }
+
+    std::vector<T> result(uniqueElements.begin(), uniqueElements.end());
+    return result;
+}
+
+int main() {
+    std::vector<int> nums = {1, 2, 2, 4, 5, 5, 0, 2, 5, 5, 7, 8, 9};
+    std::vector<std::string> str = {"a", "b", "c", "c", "d", "g", "g", "g", "q", "t", "q", "t", "l"};
+
+    auto uniqueNums = uniqueValues(nums);
+    auto uniqueStr = uniqueValues(str);
+
+    std::cout << "Unique Nums: ";
+    for (auto num : uniqueNums) std::cout << num << " ";
+    std::cout << "\nUnique Str: ";
+    for (auto s : uniqueStr) std::cout << s << " ";
+    
+    return 0;
+}
+
